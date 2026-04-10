@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Do you love me?</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Canvas untuk partikel hati -->
+    <canvas id="heartCanvas"></canvas>
+
+    <!-- Floating hearts background -->
+    <div id="floatingBg"></div>
+
+    <!-- Overlay ledakan hati besar -->
+    <div id="heartBurst" class="heart-burst hidden">
+        <div class="big-heart">❤️</div>
+    </div>
+
+    <div class="container" id="questionContainer">
+        <div class="image-container">
+            <img id="mainImage" src="bear_ask.png" alt="Cute Bears">
+        </div>
+        <h1 id="questionText">Do you love me? ❤️</h1>
+        <div class="buttons">
+            <button id="yesBtn">Yes 💗</button>
+            <button id="noBtn">No</button>
+        </div>
+        <!-- Tombol share (muncul setelah klik Yes) -->
+    
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

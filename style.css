@@ -1,0 +1,223 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #ffe6eb;
+    overflow: hidden;
+}
+
+/* ===== CANVAS ===== */
+#heartCanvas {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 10;
+}
+
+/* ===== CONTAINER ===== */
+.container {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 5;
+    position: relative;
+}
+
+/* ===== IMAGE ===== */
+.image-container img {
+    width: 250px;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 20px;
+    margin-bottom: 20px;
+    transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.image-container img.pop {
+    animation: imagePop 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes imagePop {
+    0%   { transform: scale(1); }
+    40%  { transform: scale(1.15); }
+    100% { transform: scale(1); }
+}
+
+/* ===== TEKS ===== */
+h1 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #333;
+    margin-bottom: 30px;
+    transition: all 0.5s ease;
+}
+
+h1.result {
+    color: #e8194b;
+    animation: textGlow 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes textGlow {
+    from { text-shadow: 0 0 8px rgba(232,25,75,0.3); }
+    to   { text-shadow: 0 0 24px rgba(232,25,75,0.7), 0 0 40px rgba(255,100,150,0.4); }
+}
+
+/* ===== TOMBOL ===== */
+.buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+
+button {
+    padding: 12px 38px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    font-family: 'Poppins', sans-serif;
+}
+
+#yesBtn {
+    background: linear-gradient(135deg, #ff5b8a, #ff85a1);
+    box-shadow: 0 6px 20px rgba(255, 91, 138, 0.45);
+}
+
+#yesBtn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 10px 28px rgba(255, 91, 138, 0.6);
+}
+
+#noBtn {
+    background: linear-gradient(135deg, #aaa, #ccc);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+/* ===== HEART BURST OVERLAY ===== */
+.heart-burst {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    pointer-events: none;
+    z-index: 50;
+}
+
+.heart-burst.hidden { display: none; }
+
+.big-heart {
+    font-size: 0px;
+    animation: burstHeart 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes burstHeart {
+    0%   { font-size: 0px;   opacity: 0; transform: scale(0.2); }
+    30%  { font-size: 180px; opacity: 1; transform: scale(1.2); }
+    55%  { font-size: 150px; opacity: 1; transform: scale(1);   }
+    80%  { font-size: 150px; opacity: 0.8; }
+    100% { font-size: 150px; opacity: 0; transform: scale(1.5); }
+}
+
+/* ===== FLOATING EMOJI PARTICLES ===== */
+.love-particle {
+    position: fixed;
+    pointer-events: none;
+    z-index: 30;
+    animation: floatLove var(--dur) ease-out forwards;
+    font-size: var(--size);
+    left: var(--x);
+    top: 50%;
+    user-select: none;
+}
+
+@keyframes floatLove {
+    0%   { transform: translateY(0)      rotate(0deg)   scale(0.5); opacity: 1; }
+    60%  { transform: translateY(-55vh)  rotate(180deg) scale(1.2); opacity: 1; }
+    100% { transform: translateY(-90vh)  rotate(300deg) scale(0.8); opacity: 0; }
+}
+
+/* ===== RING PULSE ===== */
+.ring {
+    position: fixed;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 20;
+    border: 4px solid rgba(255, 91, 138, 0.7);
+    animation: ringExpand 1s ease-out forwards;
+}
+
+@keyframes ringExpand {
+    from { width: 60px; height: 60px; opacity: 1;
+           top: calc(50% - 30px); left: calc(50% - 30px); }
+    to   { width: 600px; height: 600px; opacity: 0;
+           top: calc(50% - 300px); left: calc(50% - 300px); }
+}
+
+/* ===== FLOATING HEARTS BACKGROUND ===== */
+#floatingBg {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.bg-heart {
+    position: absolute;
+    bottom: -60px;
+    font-size: 1.4rem;
+    animation: bgFloat linear infinite;
+    opacity: 0;
+    user-select: none;
+    pointer-events: none;
+}
+
+@keyframes bgFloat {
+    0%   { transform: translateY(0)    rotate(0deg); opacity: 0;   }
+    10%  { opacity: 0.5; }
+    90%  { opacity: 0.3; }
+    100% { transform: translateY(-105vh) rotate(360deg); opacity: 0; }
+}
+
+/* ===== SHARE BUTTON ===== */
+.share-btn {
+    margin-top: 20px;
+    padding: 13px 36px;
+    font-size: 1rem;
+    font-weight: 700;
+    font-family: 'Poppins', sans-serif;
+    color: white;
+    background: linear-gradient(135deg, #c44daa, #ff5b8a);
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    box-shadow: 0 6px 20px rgba(196, 77, 170, 0.45);
+    transition: transform 0.2s, box-shadow 0.2s;
+    animation: sharePopIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+@keyframes sharePopIn {
+    from { transform: scale(0); opacity: 0; }
+    to   { transform: scale(1); opacity: 1; }
+}
+
+.share-btn:hover {
+    transform: scale(1.08);
+    box-shadow: 0 10px 28px rgba(196, 77, 170, 0.6);
+}
+
